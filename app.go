@@ -194,10 +194,21 @@ func makePosts(results []Post, csrfToken string, allComments bool) ([]Post, erro
 		if !allComments {
 			query += " LIMIT 3"
 		}
-		var comments []Comment
-		err = db.Select(&comments, query, p.ID)
+
+		type CommentsAndUsers struct {
+			Comment Comment
+			User    User
+		}
+		var cus []CommentsAndUsers
+		err = db.Select(&cus, query, p.ID)
 		if err != nil {
 			return nil, err
+		}
+
+		var comments []Comment
+		for _, cu := range cus {
+			cu.Comment.User = cu.User
+			comments = append(comments, cu.Comment)
 		}
 
 		// reverse
