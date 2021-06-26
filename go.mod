@@ -8,6 +8,7 @@ require (
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gorilla/sessions v1.2.1
 	github.com/jmoiron/sqlx v1.3.3
+	github.com/matsuu/kataribe v0.4.1 // indirect
 	github.com/memcachier/mc v2.0.1+incompatible // indirect
 	goji.io v2.0.2+incompatible
 )
