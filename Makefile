@@ -1,4 +1,4 @@
-.PHONY: gogo all app bench slow-log
+.PHONY: gogo all app bench slow-log kataribe
 all: app
 
 app: *.go go.mod go.sum
@@ -14,6 +14,7 @@ gogo:
 	sudo systemctl start nginx.service
 	sleep 2
 	make bench
+	make kataribe
 
 bench:
 	ssh -i ~/.ssh/id_rsa ubuntu@3.115.116.51 /home/isucon/private_isu.git/benchmarker/bin/benchmarker -u /home/isucon/private_isu.git/benchmarker/userdata -t http://35.75.16.62
