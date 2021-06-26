@@ -22,3 +22,8 @@ slow-log:
 	sudo truncate --size 0 /home/mysql-slow.sql
 	sudo cp mysql/mysql-slow.sql /home/mysql-slow.sql
 	chown ubuntu /home/mysql-slow.sql
+
+kataribe:
+	sudo cp /var/log/nginx/access.log /tmp/last-access.log && sudo chmod 666 /tmp/last-access.log
+	cd ../ && cat /tmp/last-access.log | ./kataribe -conf kataribe.toml > /tmp/kataribe.log
+	cat /tmp/kataribe.log
