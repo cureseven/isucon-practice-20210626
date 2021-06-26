@@ -196,8 +196,17 @@ func makePosts(results []Post, csrfToken string, allComments bool) ([]Post, erro
 		}
 
 		type CommentsAndUsers struct {
-			Comment Comment
-			User    User
+			CID          int
+			CPostID      int
+			CUserID      int
+			CComment     string
+			CCreatedAt   time.Time
+			UID          int
+			UAccountName string
+			UPasshash    string
+			UAuthority   int
+			UDelFlg      int
+			UCreatedAt   time.Time
 		}
 		var cus []CommentsAndUsers
 		err = db.Select(&cus, query, p.ID)
@@ -207,8 +216,19 @@ func makePosts(results []Post, csrfToken string, allComments bool) ([]Post, erro
 
 		var comments []Comment
 		for _, cu := range cus {
-			cu.Comment.User = cu.User
-			comments = append(comments, cu.Comment)
+			var comment Comment
+			comment.ID = cu.CID
+			comment.PostID = cu.CPostID
+			comment.UserID = cu.CUserID
+			comment.Comment = cu.CComment
+			comment.CreatedAt = cu.CCreatedAt
+			comment.User.ID = cu.UID
+			comment.User.AccountName = cu.UAccountName
+			comment.User.Passhash = cu.UPasshash
+			comment.User.Authority = cu.UAuthority
+			comment.User.DelFlg = cu.UDelFlg
+			comment.User.CreatedAt = cu.UCreatedAt
+			comments = append(comments, comment)
 		}
 
 		// reverse
