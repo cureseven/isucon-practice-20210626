@@ -8,7 +8,7 @@ gogo:
 	sudo systemctl stop nginx.service
 	sudo systemctl stop isu-go.service
 	sudo truncate --size 0 /var/log/nginx/access.log
-    sudo truncate --size 0 /var/log/mysql/mysql-slow.sql
+	sudo truncate --size 0 /var/log/mysql/mysql-slow.sql
 	$(MAKE) all
 	sudo systemctl start isu-go.service
 	sudo systemctl start nginx.service
