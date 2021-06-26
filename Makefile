@@ -1,4 +1,4 @@
-.PHONY: gogo all app
+.PHONY: gogo all app bench slow-log
 all: app
 
 app: *.go go.mod go.sum
@@ -17,3 +17,8 @@ gogo:
 
 bench:
 	ssh -i ~/.ssh/id_rsa ubuntu@3.115.116.51 /home/isucon/private_isu.git/benchmarker/bin/benchmarker -u /home/isucon/private_isu.git/benchmarker/userdata -t http://35.75.16.62
+
+slow-log:
+	sudo truncate --size 0 /home/mysql-slow.sql
+	sudo cp mysql/mysql-slow.sql /home/mysql-slow.sql
+	chown ubuntu /home/mysql-slow.sql
