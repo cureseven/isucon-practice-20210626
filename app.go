@@ -211,6 +211,7 @@ func makePosts(results []Post, csrfToken string, allComments bool) ([]Post, erro
 		var cus []CommentsAndUsers
 		err = db.Select(&cus, query, p.ID)
 		if err != nil {
+			log.Print(err)
 			return nil, err
 		}
 
@@ -229,6 +230,7 @@ func makePosts(results []Post, csrfToken string, allComments bool) ([]Post, erro
 			comment.User.DelFlg = cu.UDelFlg
 			comment.User.CreatedAt = cu.UCreatedAt
 			comments = append(comments, comment)
+			log.Print(comment.User.ID)
 		}
 
 		// reverse
