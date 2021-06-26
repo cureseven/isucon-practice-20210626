@@ -13,4 +13,7 @@ gogo:
 	sudo systemctl start isu-go.service
 	sudo systemctl start nginx.service
 	sleep 2
-	ssh ubuntu@3.115.116.51 "make bench"
+	ssh -i ~/.ssh/id_rsa ubuntu@3.115.116.51 "make bench"
+
+bench:
+	/home/isucon/private_isu.git/benchmarker/bin/benchmarker -u /home/isucon/private_isu.git/benchmarker/userdata -t http://35.75.16.62
