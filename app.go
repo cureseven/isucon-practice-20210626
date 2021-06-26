@@ -86,12 +86,12 @@ func dbInitialize() {
 		"DELETE FROM comments WHERE id > 100000",
 		"UPDATE users SET del_flg = 0",
 		"UPDATE users SET del_flg = 1 WHERE id % 50 = 0",
-		"CREATE INDEX idx_users_account_name_del_flg ON users (account_name, del_flg)",   // idx1
+		// "CREATE INDEX idx_users_account_name_del_flg ON users (account_name, del_flg)",   // idx1
 		"CREATE INDEX idx_comments_post_id_created_at ON comments (post_id, created_at)", // idx3
 		"CREATE INDEX idx_posts_user_id_created_at ON posts (user_id, created_at)",       // idx6
 		"CREATE INDEX idx_comments_user_id ON comments (user_id)",                        // idx7
-		"CREATE INDEX idx_posts_user_id ON posts (user_id)",                              // idx8
-		"CREATE INDEX idx_comments_post_id ON comments (post_id)",                        // idx9
+		// "CREATE INDEX idx_posts_user_id ON posts (user_id)",                              // idx8
+		"CREATE INDEX idx_comments_post_id ON comments (post_id)", // idx9
 	}
 
 	for _, sql := range sqls {
